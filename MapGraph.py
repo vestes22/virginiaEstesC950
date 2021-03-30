@@ -1,13 +1,14 @@
+# Addresses are stored in our map as objects.
 class Address:
-    def __init__(self, address_ID, street, city, state, zipcode):
-        self.address_ID = address_ID
+    def __init__(self, address_id, street, city, state, zipcode):
+        self.address_id = address_id
         self.street = street
         self.city = city
         self.state = state
         self.zipcode = zipcode
 
-    def set_address_ID(self, address_ID):
-        self.address_ID = address_ID
+    def set_address_id(self, address_id):
+        self.address_id = address_id
 
     def set_street(self, street):
         self.street = street
@@ -21,8 +22,8 @@ class Address:
     def set_zipcode(self, zipcode):
         self.zipcode = zipcode
 
-    def get_address_ID(self):
-        return self.address_ID
+    def get_address_id(self):
+        return self.address_id
 
     def get_street(self):
         return self.street
@@ -36,7 +37,7 @@ class Address:
     def get_zipcode(self):
         return self.zipcode
 
-
+# Our "map" of Salt Lake City is implemented as a bidirectional weighted graph.
 class MapGraph:
     def __init__(self):
         self.adjacent_address_list = {}
@@ -53,3 +54,5 @@ class MapGraph:
         self.add_unidirectional_distance(start_address, end_address, weight)
         self.add_unidirectional_distance(end_address, start_address, weight)
 
+    def get_distance(self, start_address, end_address):
+        return self.address_distances[(start_address, end_address)]
